@@ -45,8 +45,8 @@ TeamRank is a Scala-based application designed to parse game results, calculate 
 2. **Set Permissions for Scripts**:
    Make sure the provided scripts are executable:
    ```bash
-   chmod +x run
-   chmod +x run-tests
+   chmod +x ./bin/run.sh
+   chmod +x ./bin/run-tests.sh
    ```
 
 ### Running the Application
