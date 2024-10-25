@@ -18,6 +18,8 @@ repositories {
 
 dependencies {
     implementation("org.scala-lang:scala-library:2.13.15")
+    implementation("org.slf4j:slf4j-api:2.0.9")
+    implementation("ch.qos.logback:logback-classic:1.4.11")
 
     testImplementation("org.scalatest:scalatest_2.13:3.2.19")
     testRuntimeOnly("org.junit.platform:junit-platform-engine:1.10.0")

@@ -4,9 +4,12 @@ import com.spand.teamrank.calc.PointsCalculator
 import com.spand.teamrank.input.GamesInputParser
 import com.spand.teamrank.output.RankOutputWriter
 import com.spand.teamrank.rank.TeamRanker
+import org.slf4j.LoggerFactory
 import scala.util.{Failure, Success}
 
 object Application {
+    private val logger = LoggerFactory.getLogger(this.getClass)
+
     def main(args: Array[String]): Unit = {
         val exitCode = run(args)
         System.exit(exitCode)
@@ -18,7 +21,7 @@ object Application {
                 runRanking(inputPath, outputPath)
                 0  // Success
             case Left(errorMessage) =>
-                System.err.println(errorMessage)
+                logger.error(errorMessage)
                 1  // Failure
         }
     }
@@ -45,20 +48,20 @@ object Application {
                             case Right(rankedPoints) =>
                                 // If ranking succeeded, write to output
                                 rankOutputWriter.writeRankingToFile(rankedPoints, outputPath) match {
-                                    case Success(_) => println("Ranking written successfully. Please check your output file.")
-                                    case Failure(ex) => println(s"Error writing ranking: ${ex.getMessage}")
+                                    case Success(_) => logger.info("Ranking written successfully. Please check your output file.")
+                                    case Failure(ex) => logger.error(s"Error writing ranking: ${ex.getMessage}", ex)
                                 }
                             case Left(errorMessage) =>
                                 // Handle the error from TeamRanker
-                                println(s"Error ranking teams: $errorMessage")
+                                logger.error(s"Error ranking teams: $errorMessage")
                         }
                     case Left(errorMessage) =>
                         // Handle the error from PointsCalculator
-                        println(s"Error calculating points: $errorMessage")
+                        logger.error(s"Error calculating points: $errorMessage")
                 }
             case Failure(exception) =>
                 // Handle failure in reading games from the input file
-                println(s"Error reading games: ${exception.getMessage}")
+                logger.error(s"Error reading games: ${exception.getMessage}", exception)
         }
     }
 }

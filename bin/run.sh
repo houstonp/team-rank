@@ -24,7 +24,7 @@ INPUT_DIR="$(dirname "$INPUT_FILE")"
 OUTPUT_DIR="$(dirname "$OUTPUT_FILE")"
 
 # Define the image name
-IMAGE_NAME="team-rank:1.0.0"
+IMAGE_NAME="team-rank:1.0.1"
 
 # Check if the Docker image exists, build it if it doesn’t
 if [[ "$(docker images -q $IMAGE_NAME 2> /dev/null)" == "" ]]; then

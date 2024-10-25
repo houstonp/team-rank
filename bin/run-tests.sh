@@ -10,7 +10,7 @@ if ! command -v docker &> /dev/null; then
 fi
 
 # Define the image name
-IMAGE_NAME="team-rank:1.0.0"
+IMAGE_NAME="team-rank:1.0.1"
 
 # Check if the Docker image exists, build it if it doesn’t
 if [[ "$(docker images -q $IMAGE_NAME 2> /dev/null)" == "" ]]; then
