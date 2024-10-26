@@ -33,7 +33,7 @@ class RankOutputWriterTest extends AnyFunSuite with Matchers {
         fileContent shouldEqual
           """1. Team A, 6 pts
             |2. Team B, 3 pts
-            |3. Team C, 1 pts""".stripMargin
+            |3. Team C, 1 pt""".stripMargin
 
       case Failure(_) => fail("Expected Success but got Failure")
     }

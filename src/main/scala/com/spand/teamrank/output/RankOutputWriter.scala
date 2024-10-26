@@ -7,7 +7,7 @@ class RankOutputWriter {
   def writeRankingToFile(ranking: List[(String, Int, Int)], outputPath: String): Try[Unit] = {
     Using(new PrintWriter(outputPath)) { pw =>
       ranking.foreach { case (team, points, rank) =>
-        pw.write(s"$rank. $team, $points pts\n")
+        pw.write(s"$rank. $team, $points ${if(points == 1) "pt" else "pts"}\n")
       }
     }
   }
